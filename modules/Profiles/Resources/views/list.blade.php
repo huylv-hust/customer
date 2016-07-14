@@ -1,11 +1,25 @@
 @extends('layouts.app')
 
 @section('content')
+	<script src="{{asset('js/customer.js')}}"></script>
 	<div class="container">
 		<h2>List Customer</h2>
 		<div style="float: right; margin-bottom: 20px">
 			{{Form::open(array('url'=> route('list_customers'), 'class'=>'form-inline', 'method'=>'get'))}}
 			<div class="form-group">
+				<input style="height: 29px" class="form-control" name="start_date" id="start_date" placeholder="Start Date" value="{{isset($filter['start_date']) ? $filter['start_date'] : ''}}">
+				<script>
+					$('#start_date').datepicker({
+						format: 'yyyy-mm-dd',
+					});
+				</script>
+				~
+				<input style="height: 29px" class="form-control" name="end_date" id="end_date" placeholder="End Date" value="{{isset($filter['end_date']) ? $filter['end_date'] : ''}}">
+				<script>
+					$('#end_date').datepicker({
+						format: 'yyyy-mm-dd',
+					});
+				</script>
 				<input style="height: 29px" class="form-control" name="card_number" id="card_number" placeholder="Card Number" value="{{isset($filter['card_number']) ? $filter['card_number'] : ''}}">
 				<button type="submit" class="btn btn-sm btn-success glyphicon glyphicon-search"></button>
 				<button type="button" class="btn btn-sm btn-success glyphicon glyphicon-download-alt"></button>

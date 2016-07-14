@@ -132,6 +132,16 @@ class Profile extends Model
             $query->where('card_number', 'like', '%'.$filter['card_number'].'%');
         }
 
+        if(isset($filter['start_date']) && $filter['start_date'])
+        {
+            $query->where('profiles.created_at', '>=', date('Y-m-d 00:00:00',strtotime($filter['start_date'])));
+        }
+
+        if(isset($filter['end_date']) && $filter['end_date'])
+        {
+            $query->where('profiles.created_at', '<=', date('Y-m-d 23:59:59', strtotime($filter['end_date'])));
+        }
+
         $query->where('profiles.deleted_at', null);
 
         return $query->paginate(20);
