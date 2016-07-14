@@ -1,0 +1,27 @@
+<?php
+
+Route::group(['middleware' => ['web', 'verifyToken'], 'prefix' => 'profile', 'namespace' => 'Modules\Profiles\Http\Controllers'], function()
+{
+	Route::get('/{token}', 'ProfilesController@index')->name('update_profile');
+	Route::post('/{token}', 'ProfilesController@postProfile');
+});
+
+Route::group(['middleware' => ['web'], 'namespace' => 'Modules\Profiles\Http\Controllers'], function()
+{
+	Route::get('/thanks', 'ProfilesController@getThanks')->name('thanks');
+	Route::post('/getDistricts', 'ProfilesController@getDistricts')->name('district');
+});
+
+Route::group(['middleware' => ['web'], 'prefix' => 'admin', 'namespace' => 'Modules\Profiles\Http\Controllers\Admin'], function()
+{
+	Route::get('', 'ProfilesController@index')->name('admin_login');
+	Route::post('', 'ProfilesController@postLogin');
+});
+
+Route::group(['middleware' => ['web','checkAdminLogin'], 'prefix' => 'admin', 'namespace' => 'Modules\Profiles\Http\Controllers\Admin'], function()
+{
+	Route::get('customers', 'ProfilesController@listCustomers')->name('list_customers');
+	Route::get('profile/{id}', 'ProfilesController@detail')->name('detail_customers');
+});
+
+
