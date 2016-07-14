@@ -25,6 +25,23 @@ var customer = function () {
         });
     };
 
+    // var csv = function () {
+    //     $("#export").click(function () {
+    //         $.ajax({
+    //             url: baseUrl+'/admin/export',
+    //             type: 'post',
+    //             data: {
+    //                 'start_date': $("#start_date").val(),
+    //                 'end_date': $("#end_date").val(),
+    //                 'card_number': $("#card_number").val(),
+    //             },
+    //             success: function (data) {
+    //                 console.log(data);
+    //             }
+    //         });
+    //     });
+    // };
+
     return {
         init: function () {
             load_districts();

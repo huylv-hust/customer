@@ -29,6 +29,9 @@ class ProfilesController extends Controller {
 
 	public function listCustomers(Request $request)
 	{
+		if(isset($request['export']) && $request['export'] == 1) {
+			$this->export($request);
+		}
 		$profile = new Profile();
 		$data['profiles'] = $profile->getList($request->all());
 		$data['filter'] = $request->all();
@@ -44,5 +47,62 @@ class ProfilesController extends Controller {
 		}
 		$data['email'] = Email::find($data['profile']->email_id);
 		return view('profiles::detail', $data);
+	}
+
+	public function export($request)
+	{
+		$profile = new Profile();
+		$results = $profile->getList($request->all());
+
+		$customer_list = array();
+		$customer_list_temp = array();
+		foreach ($results as $result)
+		{
+			$customer_list_temp[$result->id][] = array(
+				'1' => $result->id,
+				'2' => $result->email,
+				'3' => $result->firstname,
+				'4' => $result->lastname,
+				'5' => $result->tel,
+				'6' => $result->card_number,
+				'7' => $result->postcode,
+				'8' => $result->birth,
+				'9' => $result->gender,
+				'10' => $result->status,
+				'11' => $result->city_name,
+				'12' => $result->district_name,
+				'13' => $result->address_3,
+				'14' => $result->created_at,
+			);
+		}
+
+		foreach($customer_list_temp as $customer_id => $rows)
+		{
+			foreach($rows as $k => $row)
+			{
+				$customer_list[] = $row;
+			}
+		}
+
+		$customer_column = array('ID','Email','First Name','Last Name','Tel','Card Number','Postcode','Birth','Gender','Status','City','District','Home','Date');
+
+		$customer[0] = $customer_column;
+
+		foreach($customer_list as $customer_row)
+		{
+			$customer[] = $customer_row;
+		}
+
+		header('Content-Type: text/csv; charset=utf-8');
+		header('Content-Disposition: attachment; filename=customer_'.date('Ymd').'.csv');
+		$fp = fopen('php://output', 'w');
+		fputs($fp, $bom = (chr(0xEF).chr(0xBB).chr(0xBF)));
+		foreach($customer as $k => $v)
+		{
+			fputcsv($fp, $v);
+		}
+
+		fclose($fp);
+		exit();
 	}
 }

@@ -22,7 +22,7 @@
 				</script>
 				<input style="height: 29px" class="form-control" name="card_number" id="card_number" placeholder="Card Number" value="{{isset($filter['card_number']) ? $filter['card_number'] : ''}}">
 				<button type="submit" class="btn btn-sm btn-success glyphicon glyphicon-search"></button>
-				<button type="button" class="btn btn-sm btn-success glyphicon glyphicon-download-alt"></button>
+				<button name="export" value="1" type="submit" class="btn btn-sm btn-success glyphicon glyphicon-download-alt" id="export"></button>
 			</div>
 
 			{{Form::close()}}
