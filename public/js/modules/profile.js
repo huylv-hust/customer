@@ -1,5 +1,5 @@
 
-var customer = function () {
+var profile = function () {
     var load_districts = function () {
         var request = $.ajax({
             type: 'POST',
@@ -11,11 +11,15 @@ var customer = function () {
 
         }).done(function(result) {
             $('#address_2').select2('val','');
-            html = '<option selected="selected" value=""> --- Select District --- </option>';
+            html = '<option value=""> --- Select District --- </option>';
             $.each(result, function(k, v) {
+                if($('#address2').val() == k) {
+                    html += '<option selected value="' + k + '">' + v + '</option>';
+                } else {
                     html += '<option value="' + k + '">' + v + '</option>';
+                }
             });
-            $('#address_2').html(html);
+            $('#address_2').html(html).select2();
         })
     };
 
@@ -34,7 +38,7 @@ var customer = function () {
 }();
 
 $(function () {
-    customer.init();
+    profile.init();
 });
 
 

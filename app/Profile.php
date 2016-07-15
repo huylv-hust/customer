@@ -58,7 +58,7 @@ class Profile extends Model
     }
     protected $appends = ['name','address'];
 
-    public function setData($data = array(), $obj)
+    public function setData($data = array(), $obj, $action = '')
     {
         $validate = $this->validate($data);
         if (isset($validate['validator'])) {
@@ -67,10 +67,13 @@ class Profile extends Model
                 'validator' => $validate['validator']
             ];
         }
-
-        if ($id = $this->checkCardNumberExisted($data['card_number'], $data['email_id'])) {
-            $this->obj = Profile::find($id);
-            $this->obj->delete();
+        
+        if (!$action)
+        {
+            if ($id = $this->checkCardNumberExisted($data['card_number'], $data['email_id'])) {
+                $this->obj = Profile::find($id);
+                $this->obj->delete();
+            }
         }
 
         $this->obj = $obj;

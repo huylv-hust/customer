@@ -22,6 +22,6 @@ Route::group(['middleware' => ['web','checkAdminLogin'], 'prefix' => 'admin', 'n
 {
 	Route::get('customers', 'ProfilesController@listCustomers')->name('list_customers');
 	Route::get('profile/{id}', 'ProfilesController@detail')->name('detail_customers');
+	Route::get('profile/edit/{id}', 'ProfilesController@edit')->name('edit_customers');
+	Route::post('profile/edit/{id}', 'ProfilesController@postEdit');
 });
-
-

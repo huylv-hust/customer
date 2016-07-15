@@ -66,7 +66,10 @@
         </form>
 	    <div>
 		    <a href="{{ URL::previous() }}" class="btn btn-success btn-sm">
-			    <span class="glyphicon glyphicon-arrow-left"></span> Back
+			    <i class="glyphicon glyphicon-arrow-left"></i> Back
+		    </a>
+		    <a href="{{ route('edit_customers', ['id' => $profile->id]) }}" class="btn btn-success btn-sm">
+			    <i class="glyphicon glyphicon-edit"></i> Edit
 		    </a>
 	    </div>
     </div>

@@ -1,5 +1,7 @@
 <?php namespace Modules\Profiles\Http\Controllers\Admin;
 
+use App\City;
+use App\District;
 use App\Email;
 use App\Helpers\Constant;
 use App\Profile;
@@ -35,6 +37,8 @@ class ProfilesController extends Controller {
 		$profile = new Profile();
 		$data['profiles'] = $profile->getList($request->all());
 		$data['filter'] = $request->all();
+		$query_string = empty($data['filters']) ? '' : '?' . http_build_query($data['filters']);
+		$request->session()->put('list_customers_url', $request->url() . $query_string);
 
 		return view('profiles::list', $data);
 	}
@@ -47,6 +51,35 @@ class ProfilesController extends Controller {
 		}
 		$data['email'] = Email::find($data['profile']->email_id);
 		return view('profiles::detail', $data);
+	}
+
+	public function edit(City $city, District $district, $id)
+	{
+		$data['title'] = 'Edit Customer';
+		$data['url'] = route('edit_customers', ['id' => $id]);
+		$data['profile'] = Profile::find($id);
+		$data['cities'] = $city->getAllCity();
+		$data['districts'] = $district->getDistrict($data['profile']->address_1);
+		return view('profiles::edit', $data);
+	}
+	
+	public function postEdit(Request $request, $id)
+	{
+		$input = $request->all();
+		$input['id'] = $id;
+		if (!$profile= Profile::find($id)) {
+			return redirect()->route('list_customers');
+		}
+
+		$profile->setData($input, $profile, 'action');
+		if ($profile->saveData()) {
+			Session::flash('success', COMMON_SAVE_OK);
+			$url = $request->session()->has('list_customers_url') ? $request->session()->get('list_customers_url') : route('list_customers');
+			return redirect($url);
+		}
+
+		Session::flash('error', COMMON_SAVE_FAIL);
+		return redirect()->route('edit_customers', ['id' => $id])->withInput();
 	}
 
 	public function export($request)
