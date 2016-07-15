@@ -1,7 +1,11 @@
 <?php
 
 define('LARAVEL_START', microtime(true));
-
+define('COMMON_SAVE_OK', 'Save successful');
+define('COMMON_SAVE_FAIL', 'Save fail');
+define('COMMON_DELETE_OK', 'Delete successful');
+define('COMMON_DELETE_FAIL', 'Delete fail');
+define('AT_LEAST_1_RECORD', 'You must choose at least 1 record');
 /*
 |--------------------------------------------------------------------------
 | Register The Composer Auto Loader
