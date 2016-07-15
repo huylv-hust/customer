@@ -57,6 +57,10 @@ class ProfilesController extends Controller {
 	{
 		$data['title'] = 'Edit Customer';
 		$data['url'] = route('edit_customers', ['id' => $id]);
+		if (!Profile::where('deleted_at', null)->where('id', $id)->first())
+		{
+			return redirect()->route('list_customers');
+		}
 		$data['profile'] = Profile::find($id);
 		$data['cities'] = $city->getAllCity();
 		$data['districts'] = $district->getDistrict($data['profile']->address_1);
