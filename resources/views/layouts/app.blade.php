@@ -48,15 +48,15 @@
                     <li class="dropdown">
                         <a aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#">City <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">List</a></li>
-                            <li><a href="#">Create</a></li>
+                            <li><a href="{{route('list_city')}}">List</a></li>
+                            <li><a href="{{route('create_city')}}">Create</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
                         <a aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#">District <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">List</a></li>
-                            <li><a href="#">Create</a></li>
+                            <li><a href="{{route('list_districts')}}">List</a></li>
+                            <li><a href="{{route('create_districts')}}">Create</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
