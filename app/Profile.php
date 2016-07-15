@@ -64,7 +64,7 @@ class Profile extends Model
         if (isset($validate['validator'])) {
             return [
                 'status' => $this->result['validate_error'],
-                'validator' => $validate['validator'] 
+                'validator' => $validate['validator']
             ];
         }
         
