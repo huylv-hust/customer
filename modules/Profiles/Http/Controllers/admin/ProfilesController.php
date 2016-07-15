@@ -74,8 +74,11 @@ class ProfilesController extends Controller {
 		if (!$profile= Profile::find($id)) {
 			return redirect()->route('list_customers');
 		}
-
-		$profile->setData($input, $profile, 'action');
+		
+		$check = $profile->setData($input, $profile, 'action');
+		if ($check['status'] != 0) {
+			return redirect()->back()->withInput()->withErrors($check['validator']);
+		}
 		if ($profile->saveData()) {
 			Session::flash('success', COMMON_SAVE_OK);
 			$url = $request->session()->has('list_customers_url') ? $request->session()->get('list_customers_url') : route('list_customers');
