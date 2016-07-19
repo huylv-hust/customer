@@ -54,7 +54,7 @@ class ProfilesController extends Controller
     {
         $obj = new District();
         $city_id = $request->input('city_id');
-        $district = $obj->getDistrict($city_id);
+        $district = $obj->getDistricts($city_id);
         return response()->json($district);
     }
 }
