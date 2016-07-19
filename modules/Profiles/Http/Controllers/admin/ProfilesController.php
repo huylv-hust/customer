@@ -63,7 +63,7 @@ class ProfilesController extends Controller {
 		}
 		$data['profile'] = Profile::find($id);
 		$data['cities'] = $city->getAllCity();
-		$data['districts'] = $district->getDistrict($data['profile']->address_1);
+		$data['districts'] = $district->getDistricts($data['profile']->address_1);
 		return view('profiles::edit', $data);
 	}
 	
