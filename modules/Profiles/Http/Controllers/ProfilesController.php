@@ -3,6 +3,7 @@
 use App\City;
 use App\District;
 use App\Profile;
+use App\Town;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
@@ -50,11 +51,17 @@ class ProfilesController extends Controller
         return view('profiles::thank');
     }
 
-    public function getDistricts(Request $request)
+    public function getDistricts(District $district, Request $request)
     {
-        $obj = new District();
         $city_id = $request->input('city_id');
-        $district = $obj->getDistricts($city_id);
+        $district = $district->getDistricts($city_id);
+        return response()->json($district);
+    }
+
+    public function getTowns(Town $town, Request $request)
+    {
+        $district_id = $request->input('district_id');
+        $district = $town->getTownByDistrict($district_id);
         return response()->json($district);
     }
 }

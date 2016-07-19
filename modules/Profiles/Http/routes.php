@@ -10,6 +10,7 @@ Route::group(['middleware' => ['web'], 'namespace' => 'Modules\Profiles\Http\Con
 {
 	Route::get('/thanks', 'ProfilesController@getThanks')->name('thanks');
 	Route::post('/getDistricts', 'ProfilesController@getDistricts')->name('district');
+	Route::post('/getTowns', 'ProfilesController@getTowns')->name('towns');
 });
 
 Route::group(['middleware' => ['web'], 'prefix' => 'admin', 'namespace' => 'Modules\Profiles\Http\Controllers\Admin'], function()

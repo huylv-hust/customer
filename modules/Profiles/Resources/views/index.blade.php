@@ -36,7 +36,7 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="col-xs-12 col-sm-4 col-md-4">
 						<div class="form-group">
 							<label>City</label><span class="red"> * </span>
 							{{Form::select('address_1',$cities, "", array('class' => 'form-control', 'id' => 'address_1')) }}
@@ -50,7 +50,7 @@
 							});
 						</script>
 					</div>
-					<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="col-xs-12 col-sm-4 col-md-4">
 						<div class="form-group">
 							<label>District</label>
 							{{Form::select('address_2',[], "", array('class' => 'form-control', 'id' => 'address_2')) }}
@@ -61,6 +61,20 @@
 						<script>
 							$('#address_2').select2({
 								placeholder: "Select a District",
+							});
+						</script>
+					</div>
+					<div class="col-xs-12 col-sm-4 col-md-4">
+						<div class="form-group">
+							<label>Town</label>
+							{{Form::select('address_4',[], "", array('class' => 'form-control', 'id' => 'address_4')) }}
+							@if($errors->first('address_4'))
+								<label class="text-danger">{{$errors->first('address_4')}}</label>
+							@endif
+						</div>
+						<script>
+							$('#address_4').select2({
+								placeholder: "Select a Town",
 							});
 						</script>
 					</div>

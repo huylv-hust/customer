@@ -13,6 +13,7 @@ class VerifyCsrfToken extends BaseVerifier
      */
     protected $except = [
         'getDistricts',
-        'admin/export'
+        'admin/export',
+        'getTowns'
     ];
 }
