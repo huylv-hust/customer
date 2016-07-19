@@ -77,6 +77,21 @@
 					</script>
 				</div>
 				<div class="form-group">
+					<label for="" class="col-sm-3 control-label">Town</label>
+					<input type="hidden" value="{{$profile->address_4}}" id="address4">
+					<div class="col-sm-9">
+						{{Form::select('address_4',$towns, $profile->address_4, array('class' => 'form-control', 'id' => 'address_4')) }}
+						@if($errors->first('address_4'))
+							<label class="text-danger">{{$errors->first('address_4')}}</label>
+						@endif
+					</div>
+					<script>
+						$('#address_4').select2({
+							placeholder: "Select a Town",
+						});
+					</script>
+				</div>
+				<div class="form-group">
 					<label for="" class="col-sm-3 control-label">Phone Number</label>
 					<div class="col-sm-9">
 						{{Form::text('tel', isset($profile) ? $profile->tel : "" , array('class'=>'form-control'))}}

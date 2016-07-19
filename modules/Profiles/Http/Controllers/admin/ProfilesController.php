@@ -5,6 +5,7 @@ use App\District;
 use App\Email;
 use App\Helpers\Constant;
 use App\Profile;
+use App\Town;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Pingpong\Modules\Routing\Controller;
@@ -53,7 +54,7 @@ class ProfilesController extends Controller {
 		return view('profiles::detail', $data);
 	}
 
-	public function edit(City $city, District $district, $id)
+	public function edit(City $city, District $district, Town $town, $id)
 	{
 		$data['title'] = 'Edit Customer';
 		$data['url'] = route('edit_customers', ['id' => $id]);
@@ -64,9 +65,10 @@ class ProfilesController extends Controller {
 		$data['profile'] = Profile::find($id);
 		$data['cities'] = $city->getAllCity();
 		$data['districts'] = $district->getDistricts($data['profile']->address_1);
+		$data['towns'] = $town->getTownByDistrict($data['profile']->address_2);
 		return view('profiles::edit', $data);
 	}
-	
+
 	public function postEdit(Request $request, $id)
 	{
 		$input = $request->all();
@@ -74,7 +76,7 @@ class ProfilesController extends Controller {
 		if (!$profile= Profile::find($id)) {
 			return redirect()->route('list_customers');
 		}
-		
+
 		$check = $profile->setData($input, $profile, 'action');
 		if ($check['status'] != 0) {
 			return redirect()->back()->withInput()->withErrors($check['validator']);

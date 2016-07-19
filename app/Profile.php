@@ -23,6 +23,7 @@ class Profile extends Model
         'address_1',
         'address_2',
         'address_3',
+        'address_4',
         'tel',
         'card_number',
         'postcode',
@@ -67,7 +68,7 @@ class Profile extends Model
                 'validator' => $validate['validator']
             ];
         }
-        
+
         if (!$action)
         {
             if ($id = $this->checkCardNumberExisted($data['card_number'], $data['email_id'])) {
@@ -97,7 +98,6 @@ class Profile extends Model
             'firstname' => 'required|max:25',
             'lastname' => 'required|max:25',
             'address_1' => 'required|integer',
-            'address_2' => 'max:100',
             'address_3' => 'max:255',
             'tel' => 'required|max:20|regex:/^[0-9]+$/',
             'card_number' => 'required|max:20|alpha_num',
