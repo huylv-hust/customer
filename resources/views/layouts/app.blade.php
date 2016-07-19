@@ -46,24 +46,18 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#">City <span class="caret"></span></a>
+                        <a aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#">Administrative units <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{route('list_city')}}">List</a></li>
-                            <li><a href="{{route('create_city')}}">Create</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#">District <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{route('list_district')}}">List</a></li>
-                            <li><a href="{{route('create_district')}}">Create</a></li>
+                            <li><a href="{{route('list_city')}}">City</a></li>
+                            <li><a href="{{route('list_district')}}">District</a></li>
+                            <li><a href="{{route('list_town')}}">Town</a></li>
+                            <li><a href="#">Import CSV</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
                         <a aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#">Customer <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="{{route('list_customers')}}">List</a></li>
-                            <li><a href="#">Create</a></li>
                         </ul>
                     </li>
                 </ul>

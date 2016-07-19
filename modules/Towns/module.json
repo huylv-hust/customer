@@ -1,0 +1,15 @@
+{
+    "name": "Towns",
+    "alias": "towns",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "Modules\\Towns\\Providers\\TownsServiceProvider"
+    ],
+    "aliases":{},
+    "files": [
+        "start.php"
+    ]
+}
