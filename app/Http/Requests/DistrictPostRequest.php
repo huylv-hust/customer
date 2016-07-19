@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-class CityPostRequest extends Request
+class DistrictPostRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -17,7 +17,8 @@ class CityPostRequest extends Request
     public function messages()
     {
         return [
-            'name.required' => 'City name is required',
+            'name.required' => 'District name is required',
+			'city_id.required' => 'City is required'
         ];
     }
 
@@ -30,6 +31,7 @@ class CityPostRequest extends Request
     {
         return [
             'name' => 'required|max:100',
+			'city_id' => 'required',
         ];
     }
 

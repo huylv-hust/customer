@@ -13,14 +13,14 @@ var city = function () {
 
     var search = function () {
         $('#btn_search').on('click', function () {
-            $('#form_manage').attr('method', 'GET').attr('action', baseUrl + '/admin/cities').submit();
+            $('#form_manage').attr('method', 'GET').attr('action', baseUrl + '/admin/districts').submit();
         });
     };
 
     var del = function () {
         $('#btn_delete').on('click', function () {
             if(confirm('Are you sure ?')) {
-                $('#form_manage').attr('action', baseUrl + '/admin/cities/delete').attr('method', 'POST').submit();
+                $('#form_manage').attr('action', baseUrl + '/admin/districts/delete').attr('method', 'POST').submit();
             }
 
         });

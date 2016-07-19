@@ -16,6 +16,17 @@
                     <div class="form-group">
                         <label for="inputEmail3" class="col-sm-3 control-label">City Name</label>
                         <div class="col-sm-9">
+                           {{Form::select('city_id',$city,isset($obj)? $obj->city_id : '',array('class'=>'form-control'))}}
+						    @if ($errors->has('city_id'))
+                                <label class="label label-danger">
+                                    {{ $errors->first('city_id') }}
+                                </label>
+                            @endif
+                        </div>
+                    </div>
+					 <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">District Name</label>
+                        <div class="col-sm-9">
                             {{Form::text('name', isset($obj) ? $obj->name : "" , array('class'=>'form-control'))}}
                             @if ($errors->has('name'))
                                 <label class="label label-danger">

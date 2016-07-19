@@ -2,6 +2,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Author thuanth6589
@@ -11,14 +12,38 @@ use Illuminate\Database\Eloquent\Model;
 class District extends Model
 {
     protected $table = 'districts';
+	protected $fields = ['city_id','name'];
+	private $obj;
 
-    public function getDistrict($city_id)
+    public function getDistrict($filter = [])
     {
-        $result = [];
-        $tmp = District::where('city_id', $city_id)->get(['id','name']);
-        foreach ($tmp as $k => $v) {
-            $result[$v->id] = $v->name;
+        $query = DB::table($this->table);
+
+		if(isset($filter['city_id']) && $filter['city_id']) {
+            $query->where('city_id', '=', $filter['city_id']);
         }
+
+		if(isset($filter['name']) && $filter['name']) {
+            $query->where('name', 'like', '%'.$filter['name'].'%');
+        }
+
+        return $query->paginate(20);
+
         return $result;
     }
+
+	public function setData($data = array(), $obj)
+    {
+        $this->obj = $obj;
+        foreach ($this->fields as $k => $v) {
+            $this->obj->$v = isset($data[$v]) && $data[$v] !== '' ? trim($data[$v]) : null;
+        }
+    }
+
+    public function saveData()
+    {
+        return $this->obj->save();
+    }
+
+
 }

@@ -55,8 +55,8 @@
                     <li class="dropdown">
                         <a aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#">District <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{route('list_districts')}}">List</a></li>
-                            <li><a href="{{route('create_districts')}}">Create</a></li>
+                            <li><a href="{{route('list_district')}}">List</a></li>
+                            <li><a href="{{route('create_district')}}">Create</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">

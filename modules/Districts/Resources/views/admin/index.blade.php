@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-	<script src="{{asset('js/modules/city.js')}}"></script>
+	<script src="{{asset('js/modules/district.js')}}"></script>
 	<div class="container">
 		<div class="row">
-			<h2>List City</h2>
+			<h2>List District</h2>
 			<hr class="colorgraph">
 			@if(Session::has('success'))
 				<div class="alert alert-danger message-success">
@@ -18,7 +18,7 @@
 					<p> {{ Session::get('error') }}</p>
 				</div>
 			@endif
-			{{Form::open(array('url'=> route('list_city'), 'class'=>'form-inline', 'id' => 'form_manage', 'method'=>'post'))}}
+			{{Form::open(array('url'=> route('list_district'), 'class'=>'form-inline', 'id' => 'form_manage', 'method'=>'post'))}}
 			<div style="margin-bottom: 20px">
 
 				<div class="form-group">
@@ -27,7 +27,7 @@
 				<button type="button" class="btn btn-sm btn-success" id="btn_search">
 					<i class="glyphicon glyphicon-search"></i> Search
 				</button>
-				<a class="btn btn-sm btn-success" href="{{route('create_city')}}">
+				<a class="btn btn-sm btn-success" href="{{route('create_district')}}">
 					<i class="glyphicon glyphicon-plus"></i> Create
 				</a>
 				<button type="button" class="btn btn-sm btn-success" id="btn_delete">
@@ -45,18 +45,18 @@
 			</tr>
 			</thead>
 			<tbody>
-			@foreach ($cities as $city)
+			@foreach ($districts as $district)
 			<tr>
-				<td style="text-align: center">{{Form::checkbox('id[]',$city->id,false,array('class'=>'row-check'))}}</td>
-				<td><a href="{{route('edit_city', ['id' => $city->id])}}">{{ $city->id }}</a></td>
-				<td>{{ $city->name }}</td>
-				<td>{{ $city->created_at }}</td>
+				<td style="text-align: center">{{Form::checkbox('id[]',$district->id,false,array('class'=>'row-check'))}}</td>
+				<td><a href="{{route('edit_district', ['id' => $district->id])}}">{{ $district->id }}</a></td>
+				<td>{{ $district->name }}</td>
+				<td>{{ $district->created_at }}</td>
 			</tr>
 			@endforeach
 			</tbody>
 		</table>
 		{{Form::close()}}
-		{{ $cities->appends($filter)->links() }}
+		{{ $districts->appends($filter)->links() }}
 		</div>
 	</div>
 @endsection
