@@ -51,7 +51,7 @@
                             <li><a href="{{route('list_city')}}">City</a></li>
                             <li><a href="{{route('list_district')}}">District</a></li>
                             <li><a href="{{route('list_town')}}">Town</a></li>
-                            <li><a href="#">Import CSV</a></li>
+                            <li><a href="{{route('import_data')}}">Import CSV</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">

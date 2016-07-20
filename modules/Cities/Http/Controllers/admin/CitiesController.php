@@ -4,7 +4,9 @@ namespace Modules\Cities\Http\Controllers\Admin;
 
 use App\City;
 use App\Http\Requests\CityPostRequest;
+use App\Http\Requests\ImportRequest;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 use Pingpong\Modules\Routing\Controller;
 use Illuminate\Http\Request;
 
@@ -116,5 +118,68 @@ class CitiesController extends Controller
             Session::flash('error', COMMON_SAVE_FAIL);
         }
         return redirect()->back();
+    }
+
+    public function getImport()
+    {
+        return view('cities::admin/import');
+    }
+
+    public function postImport(ImportRequest $request, City $city)
+    {
+        $validator = Validator::make(
+            [
+                'csv' => $request->file('csv')->getClientOriginalExtension(),
+            ],
+            [
+                'csv' => 'in:csv',
+            ]
+        );
+        if ($validator->fails()) {
+            return redirect()->back()->withInput()->withErrors($validator);
+        }
+
+        if (!$city->importCsv($request->file('csv')->getPathname())) {
+            Session::flash('error', IMPORT_FAIL);
+            return redirect()->back();
+        }
+
+        Session::flash('success', IMPORT_SUCCESS);
+        return redirect()->back();
+    }
+    
+    public function export(Request $request)
+    {
+        $handle = fopen($request->file('csv')->getPathname(), 'r');
+        fgetcsv($handle);
+        $customer_list = [];
+        $i = 0;
+        while(($info = fgetcsv($handle, 10000, ',')) !== false) {
+            $customer_list[$i][0] =  $info[7];
+            $customer_list[$i][1] =  $info[5];
+            $customer_list[$i][2] =  $info[1];
+            $i++;
+        }
+
+        $customer_column = array('City','District','Town');
+
+        $customer[0] = $customer_column;
+
+        foreach($customer_list as $customer_row)
+        {
+            $customer[] = $customer_row;
+        }
+
+        header('Content-Type: text/csv; charset=utf-8');
+        header('Content-Disposition: attachment; filename=customer_'.date('Ymd').'.csv');
+        $fp = fopen('php://output', 'w');
+        fputs($fp, $bom = (chr(0xEF).chr(0xBB).chr(0xBF)));
+        foreach($customer as $k => $v)
+        {
+            fputcsv($fp, $v);
+        }
+
+        fclose($fp);
+        exit();
     }
 }
