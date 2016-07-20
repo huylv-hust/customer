@@ -92,6 +92,17 @@
 					</script>
 				</div>
 				<div class="form-group">
+					<label for="" class="col-sm-3 control-label">Address</label>
+					<div class="col-sm-9">
+						{{Form::text('address_3', isset($profile) ? $profile->address_3 : "" , array('class'=>'form-control'))}}
+						@if ($errors->has('address_3'))
+							<label class="label label-danger">
+								{{ $errors->first('address_3') }}
+							</label>
+						@endif
+					</div>
+				</div>
+				<div class="form-group">
 					<label for="" class="col-sm-3 control-label">Phone Number</label>
 					<div class="col-sm-9">
 						{{Form::text('tel', isset($profile) ? $profile->tel : "" , array('class'=>'form-control'))}}

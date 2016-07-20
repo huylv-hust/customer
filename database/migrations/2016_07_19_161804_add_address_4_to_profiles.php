@@ -13,7 +13,7 @@ class AddAddress4ToProfiles extends Migration
     public function up()
     {
         Schema::table('profiles', function (Blueprint $table) {
-            $table->tinyInteger('address_4')->nullable()->after('address_2');
+            $table->integer('address_4')->nullable()->after('address_2');
         });
     }
 

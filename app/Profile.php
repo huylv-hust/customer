@@ -53,8 +53,13 @@ class Profile extends Model
             $tmp = District::find($this->attributes['address_2']);
             $address_2 = $tmp->name . ', ';
         }
+        $address_4 = '';
+        if($this->attributes['address_4']) {
+            $tmp = Town::find($this->attributes['address_4']);
+            $address_4 = $tmp->name . ', ';
+        }
         $address_3 = ($this->attributes['address_3'] ? $this->attributes['address_3'] . ', ' : '');
-        $address = $address_3 . $address_2 . $address_1;
+        $address = $address_3 . $address_4 . $address_2 . $address_1;
         return $address;
     }
     protected $appends = ['name','address'];
@@ -100,7 +105,7 @@ class Profile extends Model
             'address_1' => 'required|integer',
             'address_3' => 'max:255',
             'tel' => 'required|max:20|regex:/^[0-9]+$/',
-            'card_number' => 'required|max:20|alpha_num',
+            'card_number' => 'required|max:16|min:16|alpha_num',
             'postcode' => 'max:10|regex:/^[0-9]+$/',
         );
         $validator = Validator::make($data, $rules);
