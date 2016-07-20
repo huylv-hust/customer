@@ -25,7 +25,7 @@
 					<input type="hidden" id="district_hidden" value="{{isset($filter['district_id'])? $filter['district_id'] : ''}}">
 					{{Form::select('city_id',$cities, isset($filter['city_id'])? $filter['city_id'] : '',array('class'=>'form-control', 'id' => 'city_id'))}}
 					{{Form::select('district_id',isset($districts) ? $districts : [],isset($filter['district_id'])? $filter['district_id'] : '',array('class'=>'form-control', 'id' => 'district_id'))}}
-					<input style="height: 29px" class="form-control" name="name" placeholder="Name" value="{{isset($filter['name']) ? $filter['name'] : ''}}">
+					<input style="height: 32px" class="form-control" name="name" placeholder="Name" value="{{isset($filter['name']) ? $filter['name'] : ''}}">
 				</div>
 				<script>
 					$('#city_id').select2();
