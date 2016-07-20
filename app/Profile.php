@@ -131,10 +131,11 @@ class Profile extends Model
 
     public function getList($filter = [])
     {
-        $query = DB::table($this->table)->select('profiles.*', 'emails.email', 'districts.name as district_name', 'cities.name as city_name');
+        $query = DB::table($this->table)->select('profiles.*', 'emails.email', 'districts.name as district_name', 'cities.name as city_name', 'towns.name as town_name');
         $query->leftJoin('emails', 'profiles.email_id', '=', 'emails.id');
         $query->leftJoin('districts', 'profiles.address_2', '=', 'districts.id');
         $query->leftJoin('cities', 'profiles.address_1', '=', 'cities.id');
+        $query->leftJoin('towns', 'profiles.address_4', '=', 'towns.id');
         if(isset($filter['card_number']) && $filter['card_number'])
         {
             $query->where('card_number', 'like', '%'.$filter['card_number'].'%');
