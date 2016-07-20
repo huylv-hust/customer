@@ -40,7 +40,7 @@
 			<tr>
 				<th style="text-align: center"><input type="checkbox" class="checkall"></th>
 				<th>ID</th>
-				<th>Name</th>
+				<th>District</th>
 				<th>Created_at</th>
 			</tr>
 			</thead>

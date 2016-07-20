@@ -26,26 +26,22 @@
                     </div>
                 </div>
                 <script>
-                    $('#city_id').select2({
-                        placeholder: "Select a City",
-                    });
+                    $('#city_id').select2();
                 </script>
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-3 control-label">District Name</label>
                     <input type="hidden" id="district_hidden" value="{{isset($obj)? $obj->district_id : ''}}">
                     <div class="col-sm-9">
                         {{Form::select('district_id', $districts, isset($obj)? $obj->district_id : '',array('class'=>'form-control', 'id' => 'district_id'))}}
-                        @if ($errors->has('name'))
+                        @if ($errors->has('district_id'))
                             <label class="label label-danger">
-                                {{ $errors->first('name') }}
+                                {{ $errors->first('district_id') }}
                             </label>
                         @endif
                     </div>
                 </div>
                 <script>
-                    $('#district_id').select2({
-                        placeholder: "Select a District",
-                    });
+                    $('#district_id').select2();
                 </script>
                     <div class="form-group">
                         <label for="inputEmail3" class="col-sm-3 control-label">Town Name</label>
