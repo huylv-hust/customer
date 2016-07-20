@@ -22,8 +22,12 @@
 			<div style="margin-bottom: 20px">
 
 				<div class="form-group">
-					<input style="height: 29px" class="form-control" name="name" placeholder="Name" value="{{isset($filter['name']) ? $filter['name'] : ''}}">
+					{{Form::select('city_id',$cities, isset($filter['city_id'])? $filter['city_id'] : '',array('class'=>'form-control', 'id' => 'city_id'))}}
+					<input style="height: 32px" class="form-control" name="name" placeholder="Name" value="{{isset($filter['name']) ? $filter['name'] : ''}}">
 				</div>
+				<script>
+					$('#city_id').select2();
+				</script>
 				<button type="button" class="btn btn-sm btn-success" id="btn_search">
 					<i class="glyphicon glyphicon-search"></i> Search
 				</button>
@@ -39,18 +43,16 @@
 			<thead>
 			<tr>
 				<th style="text-align: center"><input type="checkbox" class="checkall"></th>
-				<th>ID</th>
+				<th>City</th>
 				<th>District</th>
-				<th>Created_at</th>
 			</tr>
 			</thead>
 			<tbody>
 			@foreach ($districts as $district)
 			<tr>
 				<td style="text-align: center">{{Form::checkbox('id[]',$district->id,false,array('class'=>'row-check'))}}</td>
-				<td><a href="{{route('edit_district', ['id' => $district->id])}}">{{ $district->id }}</a></td>
-				<td>{{ $district->name }}</td>
-				<td>{{ $district->created_at }}</td>
+				<td>{{$district->city_name}}</td>
+				<td><a href="{{route('edit_district', ['id' => $district->id])}}">{{ $district->name }}</a></td>
 			</tr>
 			@endforeach
 			</tbody>

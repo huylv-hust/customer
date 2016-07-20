@@ -46,22 +46,18 @@
 			<thead>
 			<tr>
 				<th style="text-align: center"><input type="checkbox" class="checkall"></th>
-				<th>ID</th>
+				<th>Town</th>
 				<th>City</th>
 				<th>District</th>
-				<th>Town</th>
-				<th>Created_at</th>
 			</tr>
 			</thead>
 			<tbody>
 			@foreach ($towns as $town)
 			<tr>
 				<td style="text-align: center">{{Form::checkbox('id[]',$town->id,false,array('class'=>'row-check'))}}</td>
-				<td><a href="{{route('edit_town', ['id' => $town->id])}}">{{ $town->id }}</a></td>
+				<td><a href="{{route('edit_town', ['id' => $town->id])}}">{{ $town->name }}</a></td>
 				<td>{{ $town->city_name }}</td>
 				<td>{{ $town->district_name }}</td>
-				<td>{{ $town->name }}</td>
-				<td>{{ $town->created_at }}</td>
 			</tr>
 			@endforeach
 			</tbody>

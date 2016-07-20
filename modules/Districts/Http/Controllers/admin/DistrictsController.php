@@ -17,10 +17,11 @@ class DistrictsController extends Controller
 	 * @param District $district
 	 * @return type
 	 */
-    public function index(Request $request, District $district)
+    public function index(Request $request, District $district, City $city)
     {
         $data['filter'] = $request->all();
         $data['districts'] = $district->getDistrict($data['filter']);
+        $data['cities'] = $city->getAllCity();
         $query_string = empty($data['filters']) ? '' : '?' . http_build_query($data['filters']);
         $request->session()->put('list_district_url', $request->url() . $query_string);
         return view('districts::admin/index', $data);
