@@ -22,8 +22,12 @@
 			<div style="margin-bottom: 20px">
 
 				<div class="form-group">
+					<label class="sr-only" for="city_id"></label>
 					{{Form::select('city_id',$cities, isset($filter['city_id'])? $filter['city_id'] : '',array('class'=>'form-control', 'id' => 'city_id'))}}
-					<input style="height: 32px" class="form-control" name="name" placeholder="Name" value="{{isset($filter['name']) ? $filter['name'] : ''}}">
+				</div>
+				<div class="form-group">
+					<label class="sr-only" for="district"></label>
+					<input style="height: 32px" class="form-control" id="district" name="name" placeholder="Name" value="{{isset($filter['name']) ? $filter['name'] : ''}}">
 				</div>
 				<script>
 					$('#city_id').select2();

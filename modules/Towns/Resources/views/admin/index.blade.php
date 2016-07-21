@@ -20,12 +20,18 @@
 			@endif
 			{{Form::open(array('url'=> route('list_town'), 'class'=>'form-inline', 'id' => 'form_manage', 'method'=>'post'))}}
 			<div style="margin-bottom: 20px">
-
 				<div class="form-group">
 					<input type="hidden" id="district_hidden" value="{{isset($filter['district_id'])? $filter['district_id'] : ''}}">
+					<label for="city_id" class="sr-only">City</label>
 					{{Form::select('city_id',$cities, isset($filter['city_id'])? $filter['city_id'] : '',array('class'=>'form-control', 'id' => 'city_id'))}}
+				</div>
+				<div class="form-group">
+					<label for="district_id" class="sr-only">District</label>
 					{{Form::select('district_id',isset($districts) ? $districts : [],isset($filter['district_id'])? $filter['district_id'] : '',array('class'=>'form-control', 'id' => 'district_id'))}}
-					<input style="height: 32px" class="form-control" name="name" placeholder="Name" value="{{isset($filter['name']) ? $filter['name'] : ''}}">
+				</div>
+				<div class="form-group">
+					<label for="town" class="sr-only">Town</label>
+					<input style="height: 32px" class="form-control" id="town" name="name" placeholder="Name" value="{{isset($filter['name']) ? $filter['name'] : ''}}">
 				</div>
 				<script>
 					$('#city_id').select2();
