@@ -17,6 +17,7 @@ Route::group(['middleware' => ['web'], 'prefix' => 'admin', 'namespace' => 'Modu
 {
 	Route::get('', 'ProfilesController@index')->name('admin_login');
 	Route::post('', 'ProfilesController@postLogin');
+	Route::get('/logout', 'ProfilesController@logout')->name('admin_logout');
 });
 
 Route::group(['middleware' => ['web','checkAdminLogin'], 'prefix' => 'admin', 'namespace' => 'Modules\Profiles\Http\Controllers\Admin'], function()

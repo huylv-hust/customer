@@ -30,6 +30,12 @@ class ProfilesController extends Controller {
 		return redirect()->back()->withInput();
 	}
 
+	public function logout(Request $request)
+	{
+		$request->session()->flush();
+		return redirect()->route('admin_login');
+	}
+
 	public function listCustomers(Request $request)
 	{
 		if(isset($request['export']) && $request['export'] == 1) {
