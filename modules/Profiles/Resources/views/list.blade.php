@@ -20,25 +20,26 @@
 			@endif
 			{{Form::open(array('url'=> route('list_customers'), 'class'=>'form-inline', 'method'=>'get'))}}
 				<div  style=" margin-bottom: 20px">
-					<input style="height: 29px" class="form-control" name="start_date" id="start_date" placeholder="Start Date" value="{{isset($filter['start_date']) ? $filter['start_date'] : ''}}">
+					<div class="form-group">
+						<input style="height: 29px" class="form-control" name="start_date" id="start_date" placeholder="Start Date" value="{{isset($filter['start_date']) ? $filter['start_date'] : ''}}">
+					</div>
+					<div class="form-group">
+						<input style="height: 29px" class="form-control" name="end_date" id="end_date" placeholder="End Date" value="{{isset($filter['end_date']) ? $filter['end_date'] : ''}}">
+					</div>
 					<script>
-						$('#start_date').datepicker({
+						$('#start_date, #end_date').datepicker({
 							format: 'yyyy-mm-dd',
 						});
 					</script>
-					~
-					<input style="height: 29px" class="form-control" name="end_date" id="end_date" placeholder="End Date" value="{{isset($filter['end_date']) ? $filter['end_date'] : ''}}">
-					<script>
-						$('#end_date').datepicker({
-							format: 'yyyy-mm-dd',
-						});
-					</script>
-					<input style="height: 29px" class="form-control" name="card_number" id="card_number" placeholder="Card Number" value="{{isset($filter['card_number']) ? $filter['card_number'] : ''}}">
+					<div class="form-group">
+						<input style="height: 29px" class="form-control" name="card_number" id="card_number" placeholder="Card Number" value="{{isset($filter['card_number']) ? $filter['card_number'] : ''}}">
+					</div>
+
 					<button type="submit" class="btn btn-sm btn-success">
-						<i class="glyphicon glyphicon-search"></i> Search
+						<i class="hidden-sm glyphicon glyphicon-search"></i> Search
 					</button>
 					<button name="export" value="1" type="submit" class="btn btn-sm btn-success" id="export">
-						<i class=" glyphicon glyphicon-download-alt"></i> Export
+						<i class="hidden-sm glyphicon glyphicon-download-alt"></i> Export
 					</button>
 				</div>
 			{{Form::close()}}

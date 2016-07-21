@@ -25,13 +25,13 @@
 					<input style="height: 29px" class="form-control" name="name" placeholder="Name" value="{{isset($filter['name']) ? $filter['name'] : ''}}">
 				</div>
 				<button type="button" class="btn btn-sm btn-success" id="btn_search">
-					<i class="glyphicon glyphicon-search"></i> Search
+					<i class="hidden-sm glyphicon glyphicon-search"></i> Search
 				</button>
 				<a class="btn btn-sm btn-success" href="{{route('create_city')}}">
-					<i class="glyphicon glyphicon-plus"></i> Create
+					<i class="hidden-sm glyphicon glyphicon-plus"></i> Create
 				</a>
 				<button type="button" class="btn btn-sm btn-success" id="btn_delete">
-					<i class="glyphicon glyphicon-trash"></i> Delete
+					<i class="hidden-sm glyphicon glyphicon-trash"></i> Delete
 				</button>
 
 			</div>
