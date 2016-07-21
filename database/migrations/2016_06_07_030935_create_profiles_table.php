@@ -18,8 +18,8 @@ class CreateProfilesTable extends Migration
             $table->integer('email_id');
             $table->string('firstname', 25);
             $table->string('lastname', 25);
-            $table->tinyInteger('address_1');
-            $table->string('address_2', 100)->nullable();
+            $table->integer('address_1');
+            $table->integer('address_2')->nullable();
             $table->string('address_3', 255)->nullable();
             $table->string('tel', 20);
             $table->string('card_number', 50);
