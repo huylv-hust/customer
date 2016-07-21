@@ -57,6 +57,7 @@ class ProfilesController extends Controller {
 			return redirect()->route('list_customers');
 		}
 		$data['email'] = Email::find($data['profile']->email_id);
+		$data['title'] = 'Detail Customer';
 		return view('profiles::detail', $data);
 	}
 

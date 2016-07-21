@@ -45,10 +45,10 @@
 			<table class="table table-bordered table-responsive table-hover table-striped">
 				<thead>
 				<tr>
-					<th>Name Customer</th>
+					<th>Customer</th>
 					<th>Card Number</th>
 					<th>Email</th>
-					<th>Number Phone</th>
+					<th>Phone</th>
 					<th>Address</th>
 					<th>Birthday</th>
 					<th>Gender</th>
@@ -57,11 +57,11 @@
 				<tbody>
 				@foreach ($profiles as $v)
 					<tr>
-						<td><a href="{{route('detail_customers', ['id' => $v->id])}}">{{ $v->firstname.$v->lastname }}</a></td>
+						<td><a href="{{route('detail_customers', ['id' => $v->id])}}">{{ $v->firstname.' '.$v->lastname }}</a></td>
 						<td>{{ $v->card_number }}</td>
 						<td>{{ $v->email }}</td>
 						<td>{{ $v->tel }}</td>
-						<td>{{ $v->address_3.', '.$v->town_name.', '.$v->district_name.', '.$v->city_name }}</td>
+						<td>{{ (isset($v->address_3) ? $v->address_3.', ' : '').(isset($v->town_name) ? $v->town_name.', ' : '').$v->district_name.', '.$v->city_name }}</td>
 						<td>{{ $v->birth }}</td>
 						<td>{{ $v->gender ? \App\Helpers\Constant::$gender[$v->gender] : ''}}</td>
 					</tr>

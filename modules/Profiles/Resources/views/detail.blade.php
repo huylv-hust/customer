@@ -2,6 +2,8 @@
 
 @section('content')
     <div class="container">
+	    <h2>{{$title}}</h2>
+	    <hr class="colorgraph">
         <form class="form-horizontal">
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2">Email</label>
