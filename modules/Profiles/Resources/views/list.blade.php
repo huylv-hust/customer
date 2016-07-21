@@ -61,7 +61,7 @@
 						<td>{{ $v->card_number }}</td>
 						<td>{{ $v->email }}</td>
 						<td>{{ $v->tel }}</td>
-						<td>{{ $v->address_3.' '.$v->town_name.' '.$v->district_name.' '.$v->city_name }}</td>
+						<td>{{ $v->address_3.', '.$v->town_name.', '.$v->district_name.', '.$v->city_name }}</td>
 						<td>{{ $v->birth }}</td>
 						<td>{{ $v->gender ? \App\Helpers\Constant::$gender[$v->gender] : ''}}</td>
 					</tr>
